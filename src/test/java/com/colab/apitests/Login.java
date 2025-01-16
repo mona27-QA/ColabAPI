@@ -11,6 +11,7 @@ public class Login {
 	private void styles()
 	{
 		RestAssured.baseURI= "https://radiumapi.nexaei.com/api/";
+		//requestbody
 		 String requestBody = "{ \"email\": \"dharmender02@mailinator.com\", \"pwd\": \"4TTsVQRqJuBWfzJ9Mrrg4g==\" }";
 		 
 		
