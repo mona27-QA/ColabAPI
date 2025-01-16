@@ -10,20 +10,20 @@ public class Login {
 @Test
 	private void styles()
 	{
-		RestAssured.baseURI= "https://radiumapi.nexaei.com/api/User/login";
-		 String requestBody = "{ \"email\": \"dharmender02@mailinator.com\", \"password\": \"4TTsVQRqJuBWfzJ9Mrrg4g==\" }";
+		RestAssured.baseURI= "https://radiumapi.nexaei.com/api/";
+		 String requestBody = "{ \"email\": \"dharmender02@mailinator.com\", \"pwd\": \"4TTsVQRqJuBWfzJ9Mrrg4g==\" }";
 		 
 		
-		Response resp= (Response) RestAssured.given().header("Content-Type", "application/json").body(requestBody)
-		.when().then().expect().response();
-		resp.prettyPrint();
-		 String responseString = resp.asString();
-		 JSONObject jsonResponse = new JSONObject(responseString);
-		 JSONObject tokenr = jsonResponse.getJSONObject("data");
-		 String token = resp.jsonPath().getString("data['id']");
-		// String token = resp.jsonPath().getString("data.fname");
+		Response resp= RestAssured.given().header("Content-Type", "application/json").body(requestBody)
+		.when().post("User/login").then().extract().response();
+		
+//		 String responseString = resp.asString();
+//		 JSONObject jsonResponse = new JSONObject(responseString);
+//		 JSONObject tokenr = jsonResponse.getJSONObject("data");
+//		 String token = resp.jsonPath().getString("data['id']");
+	String token = resp.jsonPath().getString("data.token");
 		 
-	        System.out.println("Token received: " + tokenr);
+	        System.out.println("Token received: " + token);
 		
 	}
 }
